@@ -1,2 +1,3 @@
 #!/bin/bash
-upower -i $(upower -e | grep battery) | grep percentage | awk '{print substr($2, 0, length($2)-1)}'
+BATLEVEL="$(upower -i $(upower -e | grep battery) | grep percentage | awk '{print substr($2, 0, length($2)-1)}')"
+echo 0 $BATLEVEL 100 | spark | awk '{print substr($1, 2, 1)}'
