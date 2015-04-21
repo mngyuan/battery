@@ -1,4 +1,17 @@
 #!/bin/bash
+GOODCODE="green"
+OKCODE="yellow"
+BADCODE="red"
+GOOD="#[fg=$GOODCODE]"
+OK="#[fg=$OKCODE]"
+BAD="#[fg=$BADCODE]"
+
 BATLEVEL="$(upower -i $(upower -e | grep battery) | grep percentage | awk '{print substr($2, 0, length($2)-1)}')"
 BATLEVELLINE="$(echo 0 $BATLEVEL 100 | spark | awk '{print substr($1, 2, 1)}')"
-echo "[$BATLEVEL%] $BATLEVELLINE"
+COLOR=$BAD
+if [[ $BATLEVEL -ge 75 ]]; then
+    COLOR=$GOOD
+elif [[ $BATLEVEL -ge 25 ]]; then
+    COLOR=$OK
+fi
+echo -e "${COLOR}[$BATLEVEL%] $BATLEVELLINE#[default]"
