@@ -1,7 +1,9 @@
 battery
 ===
 Get colored visual battery level output in your shell. 
-This is a quick and dirty bash script, and currently only supports Ubuntu/Debian and tmux status-line style output.
+This is a quick and dirty bash script, and currently only supports Ubuntu/Debian and tmux status-line style output.  
+
+![what it looks like](battery.png)
 
 Installation
 ---
